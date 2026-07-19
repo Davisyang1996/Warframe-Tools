@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const utils_1 = require("./utils");
-// Warframe base stats (for example, Valkyr Prime has base 650 HP, 185 Shield, 1000 Armor at lvl 30)
+// Warframe base stats (for example, Valkyr Prime has base 750 HP, 185 Shield, 1000 Armor at lvl 30)
 const health = 750;
 const shield = 185;
 const armor = 1000;

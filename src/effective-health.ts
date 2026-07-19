@@ -1,6 +1,6 @@
 import { roundTo } from './utils';
 
-// Warframe base stats (for example, Valkyr Prime has base 650 HP, 185 Shield, 1000 Armor at lvl 30)
+// Warframe base stats (for example, Valkyr Prime has base 750 HP, 185 Shield, 1000 Armor at lvl 30)
 const health: number = 750;
 const shield: number = 185;
 const armor:number = 1000;

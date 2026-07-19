@@ -17,6 +17,6 @@ Calculate final critical and status chance of a melee weapon based on conditions
 *node .\melee-crit-status-chance.js*
 
 # Effective Hit Points
-Calculate Effective Hit Points (EFP) of a Warframe
+Calculate Effective Hit Points (EFP) of a Warframe based on HP, Shield and Armor stats as well as Damage Reductions (DRs)
 
 *node .\effective-health.js\*
