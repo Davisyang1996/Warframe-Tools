@@ -8,9 +8,10 @@ Calculate Valence Fusion bonus outcome based on base and new Lich weapon
 
 # Melee Critical and Status Chance
 Calculate final critical and status chance of melee weapon based on conditions such as:
-- Mods equipped
-- Combo count
-- Initial Combo
-- Heavy attack
+- mods equipped (Galvanized/Sacrificial Steel, Blood Rush, Weeping Wounds, 60 60 mods)
+- gladiator set bonus
+- max combo count
+- initial Combo
+- light vs heavy attack
 
 *node .\melee-crit-status-chance.js*
