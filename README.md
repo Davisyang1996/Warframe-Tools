@@ -11,5 +11,6 @@ Calculate final critical and status chance of melee weapon based on conditions s
 - Mods equipped
 - Combo count
 - Initial Combo
+- Heavy attack
 
 *node .\melee-crit-status-chance.js*

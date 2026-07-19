@@ -1,9 +1,14 @@
-const baseCriticalChance:number = 0.25; // Base critical chance of 25% of Dual Ichor
-const baseStatusChance:number = 0.49; // Base status chance of 49% of Dual Ichor
+// Base critical and status chance values of the melee weapon (Dual Ichor for example has a base crit chance of 0.25 and a base status chance of 0.49) - replace as needed
+const baseCriticalChance:number = 0.25;
+const baseStatusChance:number = 0.49;
 
-const initialCombo:number = 30 + 120; // 30 from Corrupt Charge + 120 from Galvanized Reflex
-const meleeCombo: number = 12; // Max melee combo caps at 12 apart from Venka Prime
+// Max melee combo caps at 12 apart from Venka Prime
+const meleeCombo: number = 12;
+// Inital combo count (only relevent for Heavy Attack builds)
+// 30 from Corrupt Charge + 120 from Galvanized Reflex
+const initialCombo:number = 30 + 120;
 
+// Calculate the heavy combo tier based on the initial combo count
 function calculateHeavyComboTier(initialCombo:number):number {
   switch (true) {
     case (initialCombo >= 220):
@@ -40,7 +45,8 @@ const bloodRushHeavyBonus:number = 0.4 * (calculateHeavyComboTier(initialCombo) 
 const galvanizedSteelBonus:number = 1.1; // crit chance bonus from galvanized steel
 const sacrificialSteelBonus:number = 2.2; // crit chance bonus from sacrificial steel 
 const rivenCritBonus:number = 1.93; // crit chance bonus from riven mod
-
+const numberOfGladiatorMods:number = 1; // number of mods equipped from the Gladiator set, each giving 0.1 crit chance bonus
+const gladiatorBonus:number = numberOfGladiatorMods * 0.1; // total crit chance bonus from Gladiator mods
 
 // Modifiers for status chance
 const galvanizedElementalistBonus:number = 0.3 * 4; // status chance bonus from galvanized elementalist mod at 4 stacks
@@ -49,15 +55,19 @@ const rivenStatusBonus:number = 0; // status chance bonus from riven mod
 const numberOf6060Mods:number = 1; // number of 60/60 mods equipped, each giving 0.6 status chance bonus
 const bonusFrom6060Mods:number = 0.6 * numberOf6060Mods; // total status chance bonus from 60/60 mods
 
-import { roundTo } from './utils';
+// Import the rounding function from utils.ts
+import { roundTo } from './utils'; 
 
-const finalCriticalChanceGalSteel:number = roundTo(100*baseCriticalChance * (1 + galvanizedSteelBonus + rivenCritBonus + bloodRushBonus), 1); // final critical chance calculation with galvanized steel
-const finalCriticalChanceSacSteel:number = roundTo(100*baseCriticalChance * (1 + sacrificialSteelBonus + rivenCritBonus + bloodRushBonus), 1); // final critical chance calculation with sacrificial steel
+// Final critical chance of light attacks, i.e. with Galvalized Steel or Sacrificial Steel equipped, Blood Rush bonus at 12x Combo and Riven bonus applied, rounded to 1 decimal place
+const finalCriticalChanceGalSteel:number = roundTo(100*baseCriticalChance * (1 + galvanizedSteelBonus + rivenCritBonus + bloodRushBonus + gladiatorBonus), 1); 
+const finalCriticalChanceSacSteel:number = roundTo(100*baseCriticalChance * (1 + sacrificialSteelBonus + rivenCritBonus + bloodRushBonus + gladiatorBonus), 1); 
 
-const finalHeavyCriticalChanceGalSteel:number = roundTo(100*baseCriticalChance * (1 + galvanizedSteelBonus*2 + rivenCritBonus + bloodRushHeavyBonus), 1); // final heavy attack critical chance calculation with double Galvanized Steel mod bonus and blood rush bonus based on heavy combo tier
-const finalHeavyCriticalChanceSacSteel:number = roundTo(100*baseCriticalChance * (1 + sacrificialSteelBonus*2 + rivenCritBonus + bloodRushHeavyBonus), 1); // final heavy attack critical chance calculation with double Sacrificial Steel mod bonus and blood rush bonus based on heavy combo tier
+// Final critical chance of heavy attacks, i.e. with Galvalized Steel or Sacrificial Steel equipped, Blood Rush bonus based on initial combo count and Riven bonus applied, rounded to 1 decimal place
+const finalHeavyCriticalChanceGalSteel:number = roundTo(100*baseCriticalChance * (1 + galvanizedSteelBonus*2 + rivenCritBonus + bloodRushHeavyBonus + gladiatorBonus), 1);  
+const finalHeavyCriticalChanceSacSteel:number = roundTo(100*baseCriticalChance * (1 + sacrificialSteelBonus*2 + rivenCritBonus + bloodRushHeavyBonus + gladiatorBonus), 1); 
 
-const finalStatusChance:number = roundTo(100*baseStatusChance * (1 + galvanizedElementalistBonus + weepingWoundsBonus + rivenStatusBonus + bonusFrom6060Mods), 1); // final status chance calculation
+// Final status chance with all modifiers applied rounded to 1 decimal place
+const finalStatusChance:number = roundTo(100*baseStatusChance * (1 + galvanizedElementalistBonus + weepingWoundsBonus + rivenStatusBonus + bonusFrom6060Mods), 1);
 
 console.log(`Final critical chance with Galvanized Steel: ${finalCriticalChanceGalSteel}%`);
 console.log(`Final critical chance with Sacrificial Steel: ${finalCriticalChanceSacSteel}%`);
