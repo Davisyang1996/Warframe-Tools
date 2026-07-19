@@ -38,7 +38,6 @@ function calculateHeavyComboTier(initialCombo:number):number {
   }
 }
 
-
 // Modifiers for critical chance
 const bloodRushBonus:number = 0.4 * (meleeCombo -1); // Blood Rush bonus based on max melee combo 
 const bloodRushHeavyBonus:number = 0.4 * (calculateHeavyComboTier(initialCombo) -1); // Blood Rush bonus based on heavy combo tier
